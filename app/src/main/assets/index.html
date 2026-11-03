@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>이탈리아 탐험대</title>
+<style>
+:root{--bg:#fbf6ea;--card:#fff;--ink:#2b2a33;--mute:#6b6878;--line:#e6dcc4;--acc:#c0392b;--acc2:#e8a317;--ok:#2e8b57;--chip:#f3ead3;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1a22;--card:#26252f;--ink:#f1eee6;--mute:#a9a5b8;--line:#3a3847;--acc:#ef6b5b;--acc2:#f0b43a;--ok:#5cc58a;--chip:#33313f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1b1a22;--card:#26252f;--ink:#f1eee6;--mute:#a9a5b8;--line:#3a3847;--acc:#ef6b5b;--acc2:#f0b43a;--ok:#5cc58a;--chip:#33313f;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;line-height:1.55}
+.wrap{max-width:640px;margin:0 auto;padding:16px 14px 60px}
+h1{font-size:26px;margin:6px 0 2px}
+.sub{color:var(--mute);margin:0 0 12px;font-size:14px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);padding:8px 0;border-bottom:1px solid var(--line)}
+.prog{height:12px;background:var(--chip);border-radius:8px;overflow:hidden}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc2),var(--ok));transition:width .3s}
+.stat{display:flex;justify-content:space-between;font-size:13px;margin-top:5px;color:var(--mute)}
+.stat b{color:var(--ink)}
+.tools{display:flex;gap:8px;margin:10px 0 4px;flex-wrap:wrap}
+.tools button{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:20px;padding:6px 12px;font-size:13px;cursor:pointer}
+.tools button.on{background:var(--acc);color:#fff;border-color:var(--acc)}
+.place{margin:22px 0 8px;font-size:18px;font-weight:700;display:flex;align-items:center;gap:8px}
+.place span{font-size:13px;font-weight:400;color:var(--mute)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin-bottom:12px}
+.card.done{border-color:var(--ok);box-shadow:0 0 0 1px var(--ok) inset}
+.top{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}
+.nm{font-weight:700;font-size:17px}
+.ar{font-size:13px;color:var(--mute)}
+.must{background:var(--acc2);color:#3b2a00;border-radius:10px;font-size:12px;padding:1px 8px;font-weight:700;white-space:nowrap}
+.story{margin:8px 0;font-size:14.5px}
+.q{display:flex;gap:8px;align-items:flex-start;padding:6px 8px;border-radius:10px;background:var(--chip);margin:5px 0;font-size:14px;cursor:pointer}
+.q input{margin-top:4px;width:18px;height:18px;accent-color:var(--ok)}
+.q.c{text-decoration:line-through;opacity:.7}
+.lab{font-size:12px;color:var(--mute);margin:10px 0 2px}
+.stars button{background:none;border:0;font-size:26px;padding:0 2px;cursor:pointer;color:var(--line)}
+.stars button.f{color:var(--acc2)}
+textarea{width:100%;min-height:44px;border:1px solid var(--line);border-radius:10px;padding:8px;background:var(--bg);color:var(--ink);font:inherit;font-size:14px;resize:vertical}
+a{color:var(--acc);font-size:13px}
+.badge{margin-top:18px;padding:14px;border-radius:16px;background:var(--chip);text-align:center;font-weight:700}
+.reset{display:block;margin:18px auto 0;background:none;border:0;color:var(--mute);font-size:12px;text-decoration:underline;cursor:pointer}
+.dmap{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:10px 12px;margin:0 0 14px}.dmap summary{font-weight:700;font-size:16px;cursor:pointer}.dmap svg{width:100%;height:auto;display:block;margin:8px 0;border-radius:10px;background:var(--chip)}.dmap .tl{margin:6px 0 0;padding:0;list-style:none;font-size:13px;line-height:1.5}.dmap .tl li{display:flex;gap:6px;padding:2px 0}.dmap .tl b{flex:none;width:20px;height:20px;border-radius:50%;background:var(--acc);color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;margin-top:2px}.dmap .tl i{flex:none;width:84px;font-style:normal;color:var(--mute)}.dmap .go{display:inline-block;margin-top:8px;padding:8px 12px;border-radius:10px;background:var(--acc);color:#fff;text-decoration:none;font-size:14px}.dmap .gos{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:8px}.dmap .gos .go{margin-top:0}.dmap .alt{font-size:12px;color:var(--mute)}.dmap .go2{padding:6px 10px;border-radius:10px;border:1px solid var(--acc);color:var(--acc);text-decoration:none;font-size:13px}.dmap .cap{font-size:12px;color:var(--mute);margin:2px 0}
+.intro{background:var(--chip);border-radius:12px;padding:10px 12px;font-size:14px;margin:0 0 10px}.tabs{display:flex;gap:6px;margin-top:8px;overflow-x:auto}.tabs button{flex:0 0 auto;min-width:74px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:6px 4px;font-size:13px;line-height:1.25;cursor:pointer}.tabs button.on{background:var(--acc);color:#fff;border-color:var(--acc)}.tabs small{pointer-events:none;opacity:.85}.ansr{margin:2px 0 6px 6px}.ansb{border:0;background:none;color:var(--acc);font-size:12px;cursor:pointer;padding:2px 4px;text-decoration:underline}.ans{background:var(--chip);border-left:3px solid var(--acc2);padding:6px 10px;border-radius:8px;font-size:13px;margin-top:3px}@media print{.ansb{display:none}}.ph{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0}.ph img{width:104px;height:104px;object-fit:cover;border-radius:10px;border:1px solid var(--line)}.nop{width:104px;height:104px;border:2px dashed var(--line);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--mute);font-size:12px}.cam{border:1px solid var(--acc);background:none;color:var(--acc);border-radius:18px;padding:6px 11px;font-size:13px;cursor:pointer}.cam.d{border-color:var(--line);color:var(--mute)}@media print{:root:root:root{--bg:#fff;--card:#fff;--ink:#000;--mute:#555;--line:#bbb;--chip:#f1f1f1;color-scheme:light}.bar,.tools,.reset,.badge,.cam,.sub{display:none!important}.card{break-inside:avoid;box-shadow:none}.must{border:1px solid #999}}
+.era{background:var(--chip);border-left:3px solid var(--ok);border-radius:8px;padding:6px 10px;font-size:13px;margin:6px 0}.hist{margin:22px 0 0;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 14px}.hist summary{font-weight:700;font-size:17px;cursor:pointer}.hist p.sub{margin:6px 0 10px}.tlg{display:grid;grid-template-columns:1fr 58px 1fr;column-gap:5px;font-size:12.5px;line-height:1.4}.tlh{font-weight:700;text-align:center;padding:4px 0}.tly{text-align:center;font-size:11px;color:var(--mute);padding:8px 0;border-left:1px solid var(--line);border-right:1px solid var(--line);display:flex;align-items:center;justify-content:center}.tly.hl{color:var(--ink);font-weight:700}.tlc{padding:3px 0;display:flex;align-items:center}.tlb{width:100%;padding:6px 8px;border-radius:8px;background:var(--chip);border:1px solid var(--line)}.tlb.r{border-color:var(--acc)}.tlb.k{border-color:var(--ok)}.tlb.hl{border-width:2px}.tlh.r{color:var(--acc)}.tlh.k{color:var(--ok)}</style>
+</head>
+<body>
+<div class="wrap">
+<h1>🎨 이탈리아 탐험대</h1>
+<p class="sub">작품 앞에서 ‘찾아보기’ 미션을 해결하고, 별점과 한 줄 느낌을 남겨 보세요!</p>
+<div class="bar"><div class="prog"><i id="pg"></i></div><div class="stat"><span>미션 <b id="n1">0</b>/<b id="n2">0</b></span><span>⭐ 별점 준 작품 <b id="n3">0</b></span></div><div class="tabs" id="tb"></div></div>
+<div class="tools"><button id="fm">★ 필수 작품만</button><button id="fd">완료 숨기기</button><button id="pr">🖨️ 활동지 인쇄/PDF</button><input type="file" id="fi" accept="image/*" capture="environment" hidden><input type="file" id="fa" accept="image/*" hidden></div>
+<div id="list"><p class="sub">불러오는 중… 이 문구가 계속 보이면 크롬, 삼성 인터넷, 사파리 같은 일반 브라우저로 열어 주세요.</p></div>
+<details class="hist"><summary>🏛️ 로마 vs 한국사 비교연표</summary>
+<p class="sub">같은 때에 로마와 한국에서는 무슨 일이 있었을까요? 굵은 테두리는 두 나라에 큰일이 겹친 해예요. (간격은 실제 시간 비율이 아니에요)</p>
+<div class="tlg">
+<div class="tlh r">로마</div><div></div><div class="tlh k">한국</div>
+<div class="tlc"><div class="tlb r">왕이 없는 공화정 시작</div></div><div class="tly">BC 509</div><div class="tlc"><div class="tlb k">고조선이 커지던 때</div></div>
+<div class="tlc"><div class="tlb r">카르타고와 큰 전쟁<br>(264~146)</div></div><div class="tly">BC 264</div><div class="tlc"><div class="tlb k">위만조선이 세워짐<br>(BC 194쯤)</div></div>
+<div class="tlc"></div><div class="tly">BC 108</div><div class="tlc"><div class="tlb k">고조선이 한나라에<br>무너짐</div></div>
+<div class="tlc"></div><div class="tly">BC 57~18</div><div class="tlc"><div class="tlb k">신라·고구려·백제가<br>세워졌다고 전해짐</div></div>
+<div class="tlc"><div class="tlb r">황제의 나라 시작<br>(아우구스투스)</div></div><div class="tly">BC 27</div><div class="tlc"></div>
+<div class="tlc"><div class="tlb r">땅이 가장 넓어짐<br>(트라야누스)</div></div><div class="tly">117</div><div class="tlc"></div>
+<div class="tlc"><div class="tlb r hl">기독교를 허락함<br>(밀라노 칙령)</div></div><div class="tly hl">313</div><div class="tlc"><div class="tlb k hl">고구려가 낙랑군을<br>몰아냄</div></div>
+<div class="tlc"><div class="tlb r">기독교가 나라의<br>종교가 됨(380)</div></div><div class="tly">372~380</div><div class="tlc"><div class="tlb k">고구려가 불교를<br>받아들임(372)</div></div>
+<div class="tlc"><div class="tlb r">로마가 동쪽·서쪽으로<br>갈라짐(395)</div></div><div class="tly">391~395</div><div class="tlc"><div class="tlb k">광개토대왕이<br>임금이 됨(391)</div></div>
+<div class="tlc"></div><div class="tly">427</div><div class="tlc"><div class="tlb k">장수왕이 수도를<br>평양으로 옮김</div></div>
+<div class="tlc"><div class="tlb r hl">서로마가 무너짐</div></div><div class="tly hl">476</div><div class="tlc"><div class="tlb k hl">고구려가 가장<br>강했던 때</div></div>
+<div class="tlc"><div class="tlb r">유스티니아누스 대제<br>(527~565)</div></div><div class="tly">527~553</div><div class="tlc"><div class="tlb k">신라가 불교를<br>받아들임(527)<br>한강을 차지함(553)</div></div>
+<div class="tlc"><div class="tlb r">동로마 땅이 줄어듦</div></div><div class="tly">660~668</div><div class="tlc"><div class="tlb k">백제·고구려가 무너지고<br>신라가 삼국을<br>하나로 합침</div></div>
+<div class="tlc"></div><div class="tly">676</div><div class="tlc"><div class="tlb k">신라가 당나라 군대를<br>몰아내고 삼국 통일을<br>완성함(통일신라)</div></div>
+<div class="tlc"></div><div class="tly">698</div><div class="tlc"><div class="tlb k">발해가 세워짐</div></div>
+<div class="tlc"></div><div class="tly">900~901</div><div class="tlc"><div class="tlb k">후삼국 시대 시작<br>후백제(견훤, 900)<br>후고구려(궁예, 901)</div></div>
+<div class="tlc"><div class="tlb r">동로마는<br>계속 이어짐</div></div><div class="tly">918~936</div><div class="tlc"><div class="tlb k">고려가 세워짐(918)<br>신라가 항복함(935)<br>후삼국을 하나로<br>합침(936)</div></div>
+<div class="tlc"><div class="tlb r">십자군이 동로마<br>수도를 차지함(1204)</div></div><div class="tly">1170~1231</div><div class="tlc"><div class="tlb k">무인들이 힘을<br>잡음(1170)<br>몽골과 싸움(1231~)</div></div>
+<div class="tlc"><div class="tlb r">동로마가<br>점점 약해짐</div></div><div class="tly">1392</div><div class="tlc"><div class="tlb k">조선이 세워짐</div></div>
+<div class="tlc"><div class="tlb r">동로마가 무너짐</div></div><div class="tly">1453</div><div class="tlc"><div class="tlb k">조선 초기<br>(단종 임금 때)</div></div>
+<div class="tlc"><div class="tlb r hl">이탈리아가 하나의<br>나라가 됨(1861)<br>베네치아(1866)·<br>로마(1870)도 합침</div></div><div class="tly hl">1861~1870</div><div class="tlc"><div class="tlb k hl">조선 후기<br>고종 임금 즉위(1863)</div></div>
+</div></details>
+<div class="badge" id="badge">첫 작품을 만나러 가요!</div>
+
+</div>
+<script>
+try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
+
+window.onerror=(m)=>{const l=document.getElementById('list');if(l)l.innerHTML='<p class="sub">⚠️ 오류가 났어요: '+m+'</p>'};
+const W=[["🏟️ 콜로세움","11/15",[["콜로세움","","","약 2000년 전에 지은 로마의 큰 경기장이에요. 검투사 경기 같은 구경거리를 약 5만 명이 볼 수 있었대요.","아치 구멍이 몇 층으로 쌓여 있는지 세어 보기|무너진 벽과 남은 벽을 구분해 보기|경기장 한가운데에 서 있다고 상상하며 관중 소리 흉내 내기","콜로세움"]]],["🏛️ 콘스탄티누스 개선문","11/15",[["콘스탄티누스 개선문","","","콜로세움 바로 옆에 있는 큰 개선문이에요. 콘스탄티누스 황제가 전투에서 이긴 것을 기념해 300년대 초에 세웠어요. 일부 조각은 더 오래된 건물에서 가져왔다고 알려져 있어요.","문이 모두 몇 개인지 세어 보기|위쪽 벽에 새겨진 조각 중 마음에 드는 장면 고르기|콜로세움과 개선문 중 어느 쪽이 더 오래됐을지 맞혀 보기","콘스탄티누스_개선문"]]],["🏛️ 포로 로마노·팔라티노","11/15",[["티투스 개선문","","","티투스 장군이 전쟁에서 이긴 것을 기념해 세운 문이에요. 문 안쪽 벽에는 승리 행렬이 새겨져 있어요.","문 안쪽 조각에서 사람들이 들고 있는 물건 찾기|문을 지나가는 승리 행렬 흉내 내 보기","티투스_개선문"],["팔라티노 언덕","","","로마를 처음 세웠다는 전설이 있는 언덕이에요. 옛날 황제들의 궁전이 있었어요. 영어 palace(궁전)의 어원이라고도 해요.","언덕 위에서 콜로세움이 보이는 곳 찾기|무너진 궁전 터에서 방이 몇 개였을지 상상하기","팔라티노_언덕"],["카이사르 신전","","","유명한 장군 카이사르를 기리는 신전 터예요. 카이사르는 지금의 프랑스 땅(갈리아)을 정복하고 로마의 최고 권력자가 된 사람이에요. 반대하던 의원들에게 암살당했어요. 이 자리는 장례식을 치르고 화장한 곳이라고 알려져 있고, 나중에 양아들 아우구스투스가 신전을 세워 그를 신처럼 모셨어요. 지금도 많은 사람이 이곳에 꽃을 놓아요.","신전 터에 놓인 꽃이나 물건 찾기|카이사르는 어떤 사람이었을까 한 문장으로 말해 보기","율리우스_카이사르"],["쿠리아 율리아(원로원)","","","로마 원로원 의원들이 모여 나라 일을 의논하던 회의장이에요. 지금 건물은 다시 지어진 거예요.","건물이 어떤 색 벽돌로 되어 있나?|내가 의원이라면 어떤 법을 만들고 싶은지 생각하기","로마_원로원"]]],["🏙️ 캄피돌리오 광장","11/15",[["캄피돌리오 광장","미켈란젤로 설계","","로마의 일곱 언덕 중 하나에 있는 광장이에요. 땅 무늬가 별 모양으로 퍼지는 것으로 유명해요.","바닥 무늬가 어떤 모양일까?|광장 가운데 서 있는 동상은 누구일까 찾아보기","캄피돌리오_광장"]]],["🤍 조국의 제단","11/15",[["조국의 제단","","","이탈리아가 하나의 나라가 된 것을 기념하는 하얀 대리석 건물이에요. 계단이 아주 많고 크기가 엄청나요.","하얀 건물 맨 위에 있는 조각은 무엇일까?|계단을 세어 보거나 몇 층처럼 보이는지 말해 보기",""]]],["⛲ 트레비 분수","11/15",[["트레비 분수","","","로마에서 가장 큰 바로크 양식 분수예요. 동전을 던지면 다시 로마에 온다는 이야기가 있어요.","분수 가운데 서 있는 조각은 누구일까?|동전은 오른손으로 왼쪽 어깨 너머로 던져 보기(소원 하나!)","트레비_분수"]]],["🏛️ 바티칸 박물관","11/16",[["라오콘 군상","미상","★","트로이의 사제 라오콘과 두 아들이 바다뱀에게 휘감겨 괴로워하는 모습이에요.","뱀은 모두 몇 마리일까?|세 사람의 표정을 따라 해 보기","라오콘_군상"],["아폴론(벨베데레)","","","활을 쏜 뒤 먼 곳을 바라보는 아폴론으로 알려진 조각이에요.","아폴론이 어디를 보고 있을까?|어깨에 걸친 망토 찾기","아폴론"],["토르소","아폴로니오스","★","머리와 팔다리가 없는데도 근육이 힘차서 미켈란젤로가 아주 좋아했다고 해요.","없는 머리와 팔다리를 상상해서 포즈 따라 하기|근육이 몇 덩어리로 보일까?",""],["지도의 방 천장","","","금빛 장식과 그림으로 가득한 긴 복도예요. 벽에는 이탈리아 지도들이 이어져요.","천장에서 마음에 드는 그림 하나 고르기|벽 지도에서 로마 찾아보기",""],["아테네 학당","라파엘로","★","고대 그리스의 철학자와 학자들이 한자리에 모인 상상의 장면이에요.","가운데 두 사람 중 한 명은 하늘, 한 명은 땅을 가리켜요. 찾았나?|그림 속에 라파엘로 자신이 숨어 있어요|계단에 턱을 괴고 앉은 인물 찾기","아테네_학당"],["천지창조","미켈란젤로","★","미켈란젤로가 몇 년 동안 천장에 그린 이야기예요. 위를 보고 오래 그려서 목과 팔이 힘들었대요.","하나님과 아담의 손가락이 닿을 듯 말 듯한 장면 찾기|가장 마음에 드는 장면은?","시스티나_경당"],["최후의 심판","미켈란젤로","★","제단 쪽 벽 전체를 덮는 거대한 그림이에요. 수많은 사람이 한 화면에 있어요.","나팔을 부는 천사들 찾기|인물이 모두 몇 명쯤일까? 어림해 보기","최후의_심판_(미켈란젤로)"],["삼단 제단화","조토","","금빛 배경에 세 폭으로 나뉜 오래된 그림이에요.","금색이 가장 반짝이는 곳은?|인물의 표정은 어떤 느낌일까?",""],["광야의 성 히에로니무스","레오나르도 다빈치","","끝까지 완성되지 않은 그림이에요. 스케치처럼 남은 부분이 있어요.","완성되지 않은 부분 찾기|성인 곁에 있는 동물은?",""],["그리스도의 변용","라파엘로","★","위쪽은 빛나는 평화로운 장면, 아래쪽은 소란스러운 장면이 한 그림에 있어요.","위쪽과 아래쪽 분위기 비교하기|손가락으로 위를 가리키는 사람 찾기",""],["그리스도의 매장","카라바조","★","어두운 배경에 한 줄기 강한 빛이 인물들을 비춰요.","빛은 어느 쪽에서 오고 있을까?|등장 인물은 몇 명?","예수의_매장"]]],["⛪ 성 베드로 대성당","11/16",[["피에타","미켈란젤로","★","마리아가 세상을 떠난 예수를 안고 있는 대리석 조각이에요. 미켈란젤로가 20대에 만들었어요.","마리아의 옷 주름이 진짜 천처럼 보이는지 확인|마리아의 가슴띠에 작가 이름이 새겨져 있어요. 찾아보기","피에타_(미켈란젤로)"],["성 베드로 청동상","","","성 베드로가 열쇠를 들고 앉아 있는 청동상이에요. 13세기 말에 만든 것으로 알려져 있어요. 오랜 세월 사람들이 오른발을 만지며 소원을 빌어서 발이 반들반들하게 닳았어요.","발이 얼마나 닳았는지 눈으로 확인하기|베드로가 손에 든 물건 찾기|상 옆에서 소원 하나 떠올려 보기",""],["발다키노","베르니니","★","제단 위에 솟은 거대한 청동 덮개예요. 높이가 약 29m로 건물 한 채만 해요. 기둥이 꽈배기처럼 꼬여 있고, 바로 아래에는 베드로의 무덤이 있다고 전해져요.","기둥이 어떻게 꼬여 있는지 보기|기둥과 장식에서 벌 모양 찾기|발다키노 위로 보이는 돔까지 시선을 올려 보기",""],["베드로 의자","베르니니","","성당 맨 안쪽에 있는 금빛 조각이에요. 청동 의자를 성인상 네 명이 떠받치고, 그 위 창문에서 금빛 빛줄기가 퍼져 나와요. 의자는 베드로가 앉던 자리를 상징해요.","의자를 떠받치는 성인상이 몇 명인지 세어 보기|창문 한가운데 있는 비둘기 찾기|빛줄기가 어디서 퍼져 나오는지 따라가 보기",""]]],["⛲ 나보나 광장","11/16",[["나보나 광장","","","옛날에 경기장이 있던 자리라서 길쭉한 모양이에요. 베르니니가 만든 ‘네 개의 강 분수’가 유명해요.","분수에 있는 조각이 모두 몇 명인지 세어 보기|광장이 왜 길쭉할까 생각해 보기","나보나_광장"]]],["🏛️ 판테온","11/16",[["판테온","","","‘모든 신을 위한 신전’이라는 뜻의 아주 오래된 건물이에요. 지붕 가운데에 뚫린 둥근 구멍으로 햇빛과 빗물이 들어와요.","지붕 구멍에서 들어오는 빛이 바닥 어디에 닿는지 보기|건물 안이 어떤 모양인지 한 단어로 말해 보기","판테온_(로마)"]]],["🖼️ 보르게세 미술관","11/17",[["골리앗의 머리를 든 다비드","카라바조","★","다윗이 거인 골리앗을 이기고 머리를 들고 있는 그림이에요. 골리앗의 얼굴은 화가 자신이라는 이야기가 있어요.","배경은 어떤 색일까?|다윗의 표정은 기뻐 보여? 슬퍼 보여?","골리앗의_머리를_든_다윗_(카라바조,_로마)"],["과일바구니를 든 소년","카라바조","★","소년이 과일 바구니를 안고 이쪽을 바라봐요. 과일이 진짜처럼 반짝여요.","바구니 속 과일을 몇 가지 찾았나?|소년은 무슨 생각을 하고 있을까?",""],["성스러운 사랑과 세속적인 사랑","티치아노","","우물 같은 석관 양옆에 두 여인이 앉아 있는 그림이에요.","두 사람의 옷차림 비교하기|뒤쪽 풍경에 보이는 것 찾기","신성한_사랑과_세속적인_사랑"],["파올리나 보르게세","카노바","","나폴레옹의 여동생을 소파에 기대어 있는 모습으로 만든 대리석 조각이에요.","대리석인데 쿠션이 푹신해 보이나?|손에 들고 있는 것은?",""],["다비드","베르니니","★","돌을 던지기 직전의 다윗이에요. 움직임이 생생해요.","표정에서 느껴지는 감정은?|이 자세 그대로 따라 해 보기",""],["아폴론과 다프네","베르니니","★","아폴론에게 쫓기던 다프네가 월계수로 변하는 순간이에요.","손가락 끝이 어떻게 변하고 있을까?|발끝은 어떻게 되고 있을까?",""],["페르세포네 납치","베르니니","★","저승의 신 하데스가 페르세포네를 붙잡았어요. 돌인데 살처럼 말랑해 보여요.","손이 허벅지를 누른 자국처럼 보이는 곳 찾기|머리가 여러 개인 개 찾기",""]]],["🌄 핀초 언덕","11/17",[["핀초 언덕","","","로마 시내를 한눈에 내려다보는 언덕 전망대예요. 발아래로 큰 광장이 보이고, 해 질 무렵에는 하늘이 붉게 물들어요.","발아래 보이는 큰 광장 이름 맞혀 보기|멀리 보이는 둥근 성 베드로 대성당 돔 찾기","핀초_언덕"]]],["🪜 스페인 계단","11/17",[["스페인 계단","","★","언덕 위 성당으로 이어지는 넓고 유명한 계단이에요. 계단 아래에는 배 모양 분수가 있어요.","계단이 모두 몇 개인지 세어 보기|계단 아래 배 모양 분수 찾기|계단 맨 위 성당의 쌍둥이 탑 찾기","스페인_계단"]]],["🌷 피렌체 두오모 대성당","11/18",[["피렌체 두오모 대성당","브루넬레스키(돔)","","붉은 둥근 지붕이 도시의 상징이에요. 큰 돔을 어떻게 올렸는지가 아주 유명한 이야기예요. 옆에는 조토의 종탑도 있어요.","돔 지붕의 색을 찾아 말해 보기|종탑과 세례당 옆 건물의 무늬 찾기|대성당 벽 대리석 색이 몇 가지인지 세어 보기","피렌체_대성당"]]],["✍️ 단테의 집","11/18",[["단테의 집","","","《신곡》을 쓴 유명한 시인 단테가 살았던 곳으로 알려진 피렌체의 골목이에요. 지금은 단테를 소개하는 박물관이 있어요.","단테가 쓴 유명한 책 이름 맞혀 보기|골목에서 중세 건물 느낌이 나는 벽돌이나 창문 찾기","단테_알리기에리"]]],["🏰 베키오궁","11/18",[["베키오궁","","","피렌체의 시청으로 쓰인 성 같은 건물이에요. 높은 탑이 도시 어디서나 눈에 띄고, 앞 광장은 시뇨리아 광장이에요.","궁 앞에 서 있는 다비드 동상 찾기|높은 탑 꼭대기의 톱니 모양 찾기","베키오궁"]]],["🌉 베키오 다리","11/18",[["베키오 다리","","","아르노강 위에 있는 오래된 다리예요. 양옆에 작은 가게들이 붙어 있고, 위층에는 비밀 통로 같은 긴 회랑이 있어요.","다리 위 가게는 무엇을 팔까? 구경하기|다리 위층에 있는 긴 통로(회랑) 찾기","베키오_다리"]]],["🌅 미켈란젤로 광장","11/18",[["미켈란젤로 광장","","","강 건너 언덕 위에서 피렌체 전체를 내려다볼 수 있는 광장이에요. 해 질 무렵 붉은 지붕이 물드는 풍경이 유명해요.","붉은 지붕들 속에서 두오모의 둥근 돔 찾기|베키오 다리와 아르노강 찾기|광장 가운데 서 있는 동상은 누구일까 찾아보기","미켈란젤로_광장"]]],["🏰 시에나","11/19",[["시에나","","","중세 모습이 잘 남은 도시예요. 조개 모양으로 생긴 캄포 광장에서 해마다 말 경주가 열려요.","캄포 광장 바닥이 어떤 모양인지 보기|광장에서 높이 솟은 탑 찾기","시에나"]]],["🗼 산지미냐노","11/19",[["산지미냐노","","","탑이 많아서 ‘탑의 마을’이라고 불러요. 옛날 부자 집안들이 누가 더 높은 탑을 짓나 경쟁했다고 해요.","탑이 몇 개 보이는지 세어 보기|마을 길이 좁고 언덕인 이유를 생각해 보기","산지미냐노"]]],["🗼 피사의 사탑","11/19",[["피사의 사탑","","","탑을 지을 때 땅이 약해서 기울어진 종탑이에요. 지금은 더 기울지 않게 보강 공사를 했어요.","탑이 어느 쪽으로 기울었는지 말하기|기울어진 탑을 손으로 떠받치는 사진 찍기","피사의_사탑"]]],["🌈 부라노 섬","11/20",[["부라노 섬","","","집마다 색이 달라서 알록달록한 섬이에요. 안개 낀 날 어부들이 자기 집을 알아보려고 색을 칠했다는 이야기가 있어요.","가장 마음에 드는 집 색깔 세 개 찾기|집 앞에 있는 레이스 가게나 작품 찾기","부라노"]]],["⛪ 산마르코 광장 일대","11/21",[["산마르코 대성당","","","금빛 모자이크로 가득한 베네치아의 대성당이에요. 지붕과 벽의 그림이 반짝여요.","금색이 가장 많이 보이는 곳 찾기|입구 위의 말 조각 찾아보기","산마르코_대성당"],["두칼레 궁전","","","옛 베네치아 공화국의 지도자(도제)가 살고 일하던 궁전이에요. 재판도 이곳에서 했어요.","궁전 겉모습에서 아치가 몇 줄인지 보기|내가 도제라면 하고 싶은 일 말해 보기","두칼레_궁전"],["탄식의 다리","","","궁전과 감옥을 이어 주는 다리예요. 갇히러 가는 사람이 한숨을 쉬었다고 해서 이름이 붙었다는 이야기가 있어요.","다리의 창문 모양 보기|다리 아래를 지나는 곤돌라 찾기","탄식의_다리"]]],["⛪ 밀라노 대성당","11/22",[["밀라노 대성당","","","하얀 대리석에 뾰족한 탑이 가득한 밀라노의 큰 성당이에요. 짓는 데 아주 오래 걸렸고, 맨 꼭대기에는 금빛 마리아상이 있어요.","맨 꼭대기에 있는 금색 조각상 찾기|하얀 첨탑이 몇 개나 보이는지 어림해 보기|테라스에서 마음에 드는 조각상 하나 고르기","밀라노_대성당"]]],["🍞 산타마리아 델레 그라치에","11/22",[["최후의 만찬","레오나르도 다빈치","★","예수가 ‘너희 중 한 명이 나를 배반할 것이다’라고 말한 순간, 제자들이 깜짝 놀란 모습이에요. 관람 시간이 15분이라 미리 보고 가면 좋아요.","제자 12명이 세 명씩 네 묶음으로 나뉘어 있는지 확인|놀란 표정과 손짓 하나 따라 해 보기|한 사람이 돈주머니를 쥔 채 몸을 뒤로 젖혔어요. 찾아보기","최후의_만찬"]]]];
+const ANS={
+'핀초 언덕':{0:'포폴로 광장이에요. 가운데 높은 오벨리스크가 있고, 닮은 모양의 성당 두 개가 있어요.'},
+'스페인 계단':{0:'약 135개라고 알려져 있어요. 직접 센 숫자와 비교해 보세요.',1:'바르카치아(난파선) 분수예요. 물에 반쯤 잠긴 배를 닮았어요.'},
+'콘스탄티누스 개선문':{0:'3개예요. 가운데 문이 가장 크고 양옆에 작은 문이 하나씩 있어요.',2:'콜로세움이 더 오래됐어요(약 80년경). 개선문은 300년대에 지어졌어요.'},
+'단테의 집':{0:'《신곡》이에요. 지옥, 연옥, 천국을 여행하는 이야기예요.'},
+'베키오궁':{0:'복제품이에요. 진품은 아카데미아 미술관에 있다고 알려져 있어요.',1:'성벽 위에 이빨처럼 튀어나온 톱니 모양이에요. 적을 막던 중세 건물의 특징이에요.'},
+'베키오 다리':{0:'지금은 금과 보석 가게가 많아요. 옛날에는 고기 가게가 있었다고 알려져 있어요.',1:'바사리 회랑이에요. 메디치 가문이 베키오궁에서 피티궁까지 편하게 다니려고 만든 통로라고 해요.'},
+'미켈란젤로 광장':{2:'청동으로 만든 다비드상 복제품이에요.'},
+'밀라노 대성당':{0:'맨 꼭대기에 있는 금빛 성모 마리아상(마돈니나)이에요.'},
+'라오콘 군상':{0:'2마리예요! 뱀 두 마리가 라오콘과 두 아들을 휘감고 있어요.'},
+'아테네 학당':{0:'왼쪽의 플라톤은 손가락으로 하늘을, 오른쪽의 아리스토텔레스는 손바닥을 땅 쪽으로 펴고 있어요.',1:'그림 오른쪽 아래쪽에서 검은 모자를 쓰고 이쪽을 바라보는 인물이 라파엘로라고 알려져 있어요.',2:'계단 앞쪽에서 턱을 괴고 생각에 잠긴 인물이에요. 미켈란젤로를 닮게 그렸다는 이야기가 있어요.'},
+'천지창조':{0:'천장 중앙 부근에 있는 〈아담의 창조〉예요. 하나님과 아담의 손가락이 닿을 듯 말 듯해요.'},
+'피에타':{1:'마리아의 가슴을 가로지르는 띠에 미켈란젤로의 이름이 새겨져 있다고 알려져 있어요.'},
+'성 베드로 청동상':{1:'천국의 열쇠예요. 예수가 베드로에게 천국의 열쇠를 맡겼다는 이야기에서 나왔어요.'},
+'발다키노':{1:'교황 우르바노 8세 집안(바르베리니)의 문장이 벌이에요. 기둥과 장식 곳곳에 벌이 숨어 있어요.'},
+'베드로 의자':{0:'4명이에요. 옛 교회의 유명한 학자이자 성인 네 명이 의자를 받치고 있어요.',1:'비둘기는 성령을 뜻해요. 금빛 빛줄기 가운데 창문에 있어요.'},
+'최후의 만찬':{0:'맞아요! 제자들이 세 명씩 네 묶음으로 나뉘어 있어요.',2:'예수님 왼쪽(보는 사람 기준 왼쪽) 두 번째 묶음에서 몸을 뒤로 젖힌 사람이 유다예요.'},
+'골리앗의 머리를 든 다비드':{0:'어두운 갈색과 검은색 배경이에요. 어두운 배경 덕분에 인물이 더 밝게 보여요.'},
+'페르세포네 납치':{1:'하데스의 발치에 있는, 머리가 셋 달린 개 케르베로스예요.'},
+'아폴론과 다프네':{0:'손가락 끝이 나뭇가지와 잎으로 변하고 있어요.',1:'발끝에서 뿌리가 뻗어 나가고 있어요.'},
+'콜로세움':{0:'바깥벽에 아치가 3층으로 쌓여 있고, 맨 위는 네모난 창이 있는 층이에요.'},
+'티투스 개선문':{0:'일곱 갈래 촛대(메노라)예요. 전쟁에서 가져온 보물을 들고 가는 장면에 나와요.'},
+'캄피돌리오 광장':{0:'별 모양으로 퍼지는 무늬예요.',1:'말을 탄 마르쿠스 아우렐리우스 황제의 동상이에요. 광장에 있는 건 복제품이고 진품은 박물관 안에 있다고 해요.'},
+'조국의 제단':{0:'말 네 마리가 끄는 마차를 승리의 여신이 모는 청동 조각이에요. 건물 양쪽 맨 위에 있어요.'},
+'트레비 분수':{0:'바다의 신 오케아누스(넵튠)라고 소개돼요. 말이 끄는 조개 수레를 타고 있어요.'},
+'나보나 광장':{0:'가운데 ‘네 강의 분수’에 네 강(나일, 갠지스, 도나우, 라플라타)을 뜻하는 큰 조각이 4명 있어요.'},
+'피렌체 두오모 대성당':{0:'붉은 주황색이에요. 그래서 도시가 따뜻한 색으로 보여요.',2:'흰색, 초록색, 분홍색 대리석 세 가지가 어우러져 있어요.'},
+'시에나':{0:'조개(부채) 모양이에요. 바닥이 아홉 칸으로 나뉘어 있다고 알려져 있어요.'},
+'산지미냐노':{0:'지금은 10여 개(약 14개)가 남아 있다고 해요. 옛날에는 70개가 넘었다고 해요.'},
+'산마르코 대성당':{1:'청동 말 네 마리예요. 바깥에 있는 건 복제품이고 진품은 성당 안 박물관에 있다고 알려져 있어요.'}
+};
+const INTRO={'포로 로마노':'포로 로마노는 옛 로마 사람들이 모여 장사하고 재판하고 축제를 하던 중심 광장이에요. 지금은 무너진 건물이 많아서 상상하며 보는 게 재미있어요.','바티칸 박물관':'바티칸은 세계에서 가장 작은 나라예요. 이곳 박물관에는 오랫동안 교황들이 모은 그림과 조각이 가득해요. 모두 볼 수 없으니 미션 작품부터 찾아보세요.','성 베드로':'세계에서 가장 큰 성당 중 하나예요. 안이 너무 커서 사람이 작게 보여요. 피에타 조각은 보호 유리 안에 있어요.','보르게세':'보르게세 가문의 별장을 미술관으로 쓰는 곳이에요. 대리석 조각이 살아 있는 것처럼 보이는 게 가장 큰 볼거리예요.','산마르코':'베네치아는 물 위에 지은 도시예요. 100개가 넘는 섬과 아주 많은 다리로 이어져 있어요. 이 광장 일대는 도시의 중심이에요.','그라치에':'레오나르도 다빈치가 식당 벽에 직접 그린 그림이에요. 관람 시간이 15분이라 미리 이야기를 알고 가면 더 잘 보여요.'};
+const ERA={"콜로세움":["AD 80년에 완성","삼국 시대 초반, 나라들이 자리 잡아 가던 때"],"티투스 개선문":["AD 81년쯤","콜로세움과 같은 무렵, 삼국 시대 초반"],"팔라티노 언덕":["BC 753년, 로마가 세워졌다고 전해지는 때","한반도는 청동기 시대 (청동으로 도구를 만들던 때)"],"카이사르 신전":["BC 29년에 완성","신라·고구려·백제가 세워졌다고 전해지는 때"],"쿠리아 율리아(원로원)":["BC 1세기 (약 2000년 전)","신라·고구려·백제가 세워졌다고 전해지는 때"],"콘스탄티누스 개선문":["AD 315년에 완성","고구려가 낙랑군을 몰아낸 바로 뒤"],"판테온":["AD 126년쯤 지금 모습으로 완성","삼국이 나라의 모습을 갖춰 가던 때"],"캄피돌리오 광장":["AD 170년대 (2세기 후반)","삼국 시대 초반, 고구려가 힘을 키우던 때"],"피에타":["1498~99년","조선 연산군 임금 때"],"최후의 만찬":["1495~98년쯤","조선 연산군 임금 때"],"아테네 학당":["1509~11년쯤","조선 중종 임금 때"],"천지창조":["1508~12년","조선 중종 임금 때"],"최후의 심판":["1536~41년","조선 중종 임금 때"],"과일바구니를 든 소년":["1593~94년쯤","조선 선조 임금 때, 임진왜란이 일어났던 때"],"골리앗의 머리를 든 다비드":["1609~10년쯤","조선 광해군 임금 때"],"성스러운 사랑과 세속적인 사랑":["1514년쯤","조선 중종 임금 때"],"파올리나 보르게세":["1805~08년","조선 순조 임금 때"],"다비드":["1623~24년","조선 인조 임금 때"],"아폴론과 다프네":["1622~25년","조선 광해군 끝 무렵~인조 임금 초"],"페르세포네 납치":["1621~22년","조선 광해군 임금 때"],"트레비 분수":["1762년에 완성","조선 영조 임금 때"],"나보나 광장":["1651년, 네 강의 분수가 만들어짐","조선 효종 임금 때"],"스페인 계단":["1725년에 완성","조선 영조 임금 때"],"피렌체 두오모 대성당":["1436년에 둥근 지붕 완성","조선 세종 임금 때"],"단테의 집":["단테가 살던 때 (1265~1321년)","고려 시대 후반 (고려는 918~1392년)"],"베키오궁":["1299~1314년쯤 지음","고려 시대 후반"],"베키오 다리":["1345년에 다시 지음","고려 시대 후반"],"피사의 사탑":["1173년에 짓기 시작","고려에서 무인들이 힘을 잡던 때"],"산마르코 대성당":["1063년에 짓기 시작 (지금 건물)","고려 문종 임금 때"],"탄식의 다리":["1600년쯤","조선 선조 임금 때"],"밀라노 대성당":["1386년에 짓기 시작","고려 끝 무렵, 조선이 세워지기(1392) 몇 년 전"]};
+let S={};try{S=JSON.parse(localStorage.getItem('rome-art')||'{}')}catch(e){}
+const save=()=>{try{localStorage.setItem('rome-art',JSON.stringify(S))}catch(e){}};
+let onlyMust=false,hideDone=false,day='11/15';const DAYS=[['11/15','11/15 일'],['11/16','11/16 월'],['11/17','11/17 화'],['11/18','11/18 수'],['11/19','11/19 목'],['11/20','11/20 금'],['11/21','11/21 토'],['11/22','11/22 일']];
+const E=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+const SCH={"11/15": {"h": "로마 2일차", "r": [["07:00", "기상"], ["08:00", "호텔 출발"], ["09:00~11:00", "콜로세움 (9시 30분 입장)"], ["11:00~12:30", "포로 로마노 + 팔라티노 언덕"], ["12:30~14:00", "점심"], ["14:00", "캄피돌리오 광장"], ["14:30", "조국의 제단"], ["15:30", "트레비 분수 (도보 800m, 10분)"], ["19:00", "저녁식사"], ["21:00", "취침"]], "n": []}, "11/16": {"h": "로마 3일차", "r": [["05:30", "기상"], ["06:30", "숙소 출발 및 아침 간식"], ["07:30", "바티칸 도착 (예약시간 8시, 30분 전 도착)"], ["08:00~10:30", "바티칸 박물관"], ["10:30~11:00", "젤라또"], ["11:00~12:30", "성 베드로 대성당"], ["12:30~14:00", "점심식사 및 휴식"], ["14:00~15:00", "성천사성(천사의 성) 외부, 다리 산책"], ["15:30~", "나보나 광장, 판테온"], ["19:00", "저녁식사"], ["21:30", "취침"]], "n": []}, "11/17": {"h": "피렌체 1일차", "r": [["06:30", "기상 (짐 싸기)"], ["07:30", "호텔 체크아웃 및 짐 맡기기 (간편식 조식 구매, 61번 버스)"], ["09:00~11:00", "보르게세 미술관 관람"], ["11:00~12:00", "공원 및 핀초 언덕 전망대"], ["12:00~14:30", "스페인 광장, 스페인 계단 (점심식사 시간 포함)"], ["15:30", "호텔 복귀"], ["17:00", "테르미니역 도착"], ["17:35", "피렌체행 기차 출발 (30분 전 도착하기)"], ["20:00", "저녁식사"], ["21:30", "취침"]], "n": []}, "11/18": {"h": "피렌체 2일차", "r": [["07:00", "기상 및 조식"], ["08:30", "호텔 출발"], ["09:00", "베키오 다리"], ["09:30", "시뇨리아 광장"], ["10:00", "베키오궁"], ["10:30", "단테의 집"], ["11:00~12:30", "두오모 대성당"], ["12:30~14:00", "점심"], ["14:00~", "가죽시장 (+곱창버거 사기?)"], ["16:00", "미켈란젤로 광장 도착 (12번 버스)"], ["16:30", "노을 시작 및 야경 감상"], ["17:30", "호텔 복귀 (12 or 13번 버스)"], ["19:00", "저녁식사"], ["21:30", "취침"]], "n": []}, "11/19": {"h": "피렌체 3일차", "r": [["05:30", "기상"], ["06:30", "조식 (밀박스 되는지 문의하기)"], ["07:30", "투어버스 출발 (30분 전 집결)"], ["하루종일", "시에나, 산지미냐노, 피사 방문 (클룩 예약)"], ["19:30", "투어 종료"], ["20:00", "저녁식사"], ["21:30", "취침"]], "n": []}, "11/20": {"h": "베니스 1일차", "r": [["06:00", "기상 (짐 싸기)"], ["07:00", "조식 (밀박스 되는지 문의하기)"], ["07:30", "역으로 출발"], ["08:20", "피렌체 기차 출발 (30분 전 도착하기)"], ["10:23", "베니스 도착 후 호텔 짐 맡기기 (호텔 Plaza, Viale Stazione 36)"], ["11:00", "교통권 개시"], ["12:30~14:00", "부라노 점심식사"], ["14:00~16:00", "부라노 관광 (2h)"], ["16:00~", "본섬 이동 후 호텔 복귀"], ["19:00", "저녁식사"], ["21:00", "취침"]], "n": []}, "11/21": {"h": "밀라노 1일차", "r": [["06:00", "기상"], ["07:00", "조식"], ["08:00", "호텔 출발"], ["오전~오후", "메스트레역 → 베니스 산타 루치아역 → 산 마르코로 이동 (바포레토 1번) → 두칼레 궁전, 탄식의 다리, 리알토 다리 → 도보 관광 후 산타 루치아역 복귀"], ["16:00", "호텔 복귀"], ["17:00", "기차역 도착"], ["18:00경", "기차 탑승 (베니스→밀라노 2h15m)"], ["20:30", "밀라노 호텔 도착"], ["21:30", "취침"]], "n": []}, "11/22": {"h": "밀라노 2일차", "r": [["07:00", "기상"], ["08:00", "호텔 체크아웃 및 짐 맡기기 (지하철 이동)"], ["08:30", "밀라노 대성당 도착"], ["09:00~10:00", "밀라노 대성당 테라스 관람 (16번 트램 이동)"], ["11:10", "티켓 확인 (30분 전 도착 필수)"], ["11:15~12:00", "최후의 만찬 (11:45 입장, 15분 관람)"], ["12:00~13:00", "근처 간단한 점심 식사 (16번 트램 이동)"], ["13:30~14:30", "대성당 갤러리아 (메트로)"], ["15:00", "호텔 짐 찾기"], ["15:55", "공항 출발 기차 탑승"], ["20:00", "말펜사 공항 이륙 (3시간 전 도착 목표)"]], "n": []}};
+function schHtml(){const s=SCH[day];if(!s)return '';
+ const li=s.r.map(q=>'<li><i>'+E(q[0])+'</i><span>'+E(q[1])+'</span></li>').join('');
+ const nt=s.n.map(n=>'<p class="cap"><b>'+E(n[0])+'</b><br>'+n[1].map(E).join('<br>')+'</p>').join('');
+ const RTS={"11/15": {"m": "walking", "o": "41.89021,12.49223", "d": "41.90093,12.48331", "w": ["41.88981,12.49068", "41.89070,12.48858", "41.89106,12.48627", "41.89172,12.48621", "41.89207,12.48602", "41.89295,12.48527", "41.89336,12.48280", "41.89489,12.48295"]}, "11/16": {"m": "walking", "o": "Musei Vaticani, Roma", "d": "Pantheon, Roma", "w": ["Basilica di San Pietro, Roma", "Castel Sant'Angelo, Roma", "Piazza Navona, Roma"]}, "11/17": {"m": "walking", "o": "Galleria Borghese, Roma", "d": "Roma Termini", "w": ["Terrazza del Pincio, Roma", "Piazza di Spagna, Roma", "Mercure Roma Piazza Bologna, Via Reggio Calabria 54, Roma"]}, "11/18": {"m": "walking", "o": "Hotel Boccaccio, Firenze", "d": "Piazzale Michelangelo, Firenze", "w": ["Ponte Vecchio, Firenze", "Piazza della Signoria, Firenze", "Palazzo Vecchio, Firenze", "Casa di Dante, Firenze", "Duomo di Firenze", "Mercato di San Lorenzo, Firenze"]}, "11/20": {"m": "transit", "o": "Stazione di Venezia Mestre", "d": "Burano, Venezia", "w": []}, "11/21": {"m": "walking", "o": "Stazione di Venezia Mestre", "d": "45.44094,12.32204", "w": ["45.44094,12.32204", "Piazza San Marco, Venezia", "Palazzo Ducale, Venezia", "Ponte dei Sospiri, Venezia", "Ponte di Rialto, Venezia"]}, "11/22": {"m": "walking", "o": "Duomo di Milano", "d": "Milano Centrale", "w": ["Galleria Vittorio Emanuele II, Milano", "Santa Maria delle Grazie, Milano"]}, "11/19": {"m": "driving", "o": "Piazzale Montelungo, Firenze", "d": "Pisa, Italia", "w": ["Siena, Italia", "San Gimignano, Italia"]}};
+ const rt=RTS[day],mk=m=>'https://www.google.com/maps/dir/?api=1&travelmode='+m+'&origin='+encodeURIComponent(rt.o)+'&destination='+encodeURIComponent(rt.d)+(rt.w.length?'&waypoints='+encodeURIComponent(rt.w.join('|')):'');
+ const RT=rt?'<a class="go" href="'+mk(rt.m)+'" rel="noopener">구글 지도에서 길 보기 ↗</a>':'';
+ return '<details class="dmap" open><summary>🗓️ '+E(s.h)+'</summary><ul class="tl">'+li+'</ul>'+nt+RT+'</details>';
+}
+function render(){
+ let h='',tq=0,dq=0,rated=0;const TT={},TD={};
+ W.forEach((p,pi)=>{
+  let inner='',pd=0,pt=0;const show=day==='all'||p[1]===day;
+  p[2].forEach((w,wi)=>{
+   const id=w[0],st=S[id]||{c:[],r:0,n:''},qs=w[4].split('|');
+   const dn=st.c.filter(Boolean).length;tq+=qs.length;dq+=dn;if(st.r)rated++;
+   const done=dn===qs.length;TT[p[1]]=(TT[p[1]]||0)+qs.length;TD[p[1]]=(TD[p[1]]||0)+dn;pt+=qs.length;pd+=dn;if(!show)return;
+   if(onlyMust&&w[2]!=='★')return;if(hideDone&&done)return;
+   inner+=`<div class="card${done?' done':''}"><div class="top"><div><div class="nm">${E(w[0])}${done?' ✅':''}</div><div class="ar">${E(w[1])}</div></div>${w[2]?'<span class="must">★ 필수</span>':''}</div>
+   <div class="story">${E(w[3])}</div>${ERA[id]?`<div class="era">🕰️ <b>${E(ERA[id][0])}</b><br>같은 무렵 한국은? ${E(ERA[id][1])}</div>`:''}<div class="ph">${P[id]?`<img src="${P[id]}" alt="${E(w[0])} 사진">`:'<div class="nop">사진 없음</div>'}<button class="cam" data-cam="${id}">📷 ${P[id]?'다시 찍기':'사진 찍기'}</button><button class="cam d" data-alb="${id}">앨범</button>${P[id]?`<button class="cam d" data-del="${id}">삭제</button>`:''}</div>
+   ${qs.map((q,i)=>`<label class="q${st.c[i]?' c':''}"><input type="checkbox" data-id="${id}" data-i="${i}"${st.c[i]?' checked':''}><span>${E(q)}</span></label>${(ANS[w[0]]||{})[i]?`<div class="ansr"><button class="ansb" data-a="${id}|${i}">${st.a&&st.a[i]?'정답 숨기기':'💡 정답 보기'}</button>${st.a&&st.a[i]?`<div class="ans">${E(ANS[w[0]][i])}</div>`:''}</div>`:''}`).join('')}
+   <div class="lab">내 별점</div><div class="stars">${[1,2,3,4,5].map(n=>`<button class="${n<=st.r?'f':''}" data-s="${id}" data-v="${n}">★</button>`).join('')}</div>
+   <div class="lab">한 줄 느낌</div><textarea data-n="${id}" placeholder="무엇이 가장 인상 깊었어?">${E(st.n||'')}</textarea>
+   ${w[5]?`<div class="lab"><a href="https://ko.wikipedia.org/wiki/${w[5]}" target="_blank" rel="noopener">위키백과에서 더 알아보기 ↗</a></div>`:''}</div>`;
+  });
+  if(inner)h+=`<div class="place">${p[0]} <span>${p[1]} · ${pd}/${pt} 미션</span></div>`+(Object.keys(INTRO).some(k=>p[0].includes(k))?`<div class="intro">${E(INTRO[Object.keys(INTRO).find(k=>p[0].includes(k))])}</div>`:'')+inner;
+ });
+ tb.innerHTML=DAYS.map(d=>`<button class="${d[0]===day?'on':''}" data-day="${d[0]}">${d[1]}<br><small>${TD[d[0]]||0}/${TT[d[0]]||0}</small></button>`).join('');document.getElementById('list').innerHTML=(day==='all'?'':schHtml())+(h||'<p class="sub">보여줄 작품이 없어요.</p>');
+ n1.textContent=dq;n2.textContent=tq;n3.textContent=rated;
+ pg.style.width=(tq?dq/tq*100:0)+'%';
+ const r=tq?dq/tq:0;
+ badge.textContent=r>=1?'🏆 로마 미술관 마스터! 모든 미션 완료!':r>=.6?'🥇 베테랑 탐험가! 거의 다 왔어요':r>=.3?'🥈 작품 탐정단! 좋은 속도예요':dq>0?'🥉 초보 탐험가 출발!':'첫 작품을 만나러 가요!';
+}
+document.addEventListener('change',e=>{const t=e.target;if(t.dataset.id){const s=S[t.dataset.id]=S[t.dataset.id]||{c:[],r:0,n:''};s.c[t.dataset.i]=t.checked;save();render()}});
+document.addEventListener('click',e=>{const t=e.target;if(t.dataset.s){const s=S[t.dataset.s]=S[t.dataset.s]||{c:[],r:0,n:''};s.r=s.r==t.dataset.v?0:+t.dataset.v;save();render()}});
+document.addEventListener('input',e=>{const t=e.target;if(t.dataset.n){const s=S[t.dataset.n]=S[t.dataset.n]||{c:[],r:0,n:''};s.n=t.value;save()}});
+fm.onclick=()=>{onlyMust=!onlyMust;fm.classList.toggle('on',onlyMust);render()};
+fd.onclick=()=>{hideDone=!hideDone;fd.classList.toggle('on',hideDone);render()};
+const MIG={"0-0":"라오콘 군상","0-1":"아폴론(벨베데레)","0-2":"토르소","0-3":"지도의 방 천장","0-4":"아테네 학당","0-5":"천지창조","0-6":"최후의 심판","0-7":"삼단 제단화","0-8":"광야의 성 히에로니무스","0-9":"그리스도의 변용","0-10":"그리스도의 매장","1-0":"피에타","2-0":"골리앗의 머리를 든 다비드","2-1":"과일바구니를 든 소년","2-2":"성스러운 사랑과 세속적인 사랑","2-3":"파올리나 보르게세","2-4":"다비드","2-5":"아폴론과 다프네","2-6":"페르세포네 납치","3-0":"최후의 만찬","4-0":"콜로세움","5-0":"티투스 개선문","5-1":"카이사르 신전","5-2":"쿠리아 율리아(원로원)","5-3":"팔라티노 언덕","6-0":"캄피돌리오 광장","7-0":"조국의 제단","8-0":"트레비 분수","9-0":"나보나 광장","10-0":"판테온","11-0":"피렌체 두오모 대성당","12-0":"시에나","13-0":"산지미냐노","14-0":"피사의 사탑","15-0":"부라노 섬","16-0":"산마르코 대성당","16-1":"두칼레 궁전","16-2":"탄식의 다리","17-0":"콘스탄티누스 개선문","18-0":"단테의 집","19-0":"베키오궁","20-0":"베키오 다리","21-0":"미켈란젤로 광장","22-0":"밀라노 대성당"};
+let P={},cur=null,db=null;
+const idb=()=>new Promise((ok,no)=>{try{const r=indexedDB.open('rome-art-ph',1);r.onupgradeneeded=()=>r.result.createObjectStore('p');r.onsuccess=()=>ok(r.result);r.onerror=()=>no()}catch(e){no()}});
+const tx=(m,f)=>new Promise(ok=>{if(!db)return ok();try{const t=db.transaction('p',m);f(t.objectStore('p'));t.oncomplete=()=>ok();t.onerror=()=>ok()}catch(e){ok()}});
+function shrink(f){return new Promise(ok=>{const u=URL.createObjectURL(f),i=new Image();i.onload=()=>{const k=Math.min(1,640/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=i.width*k;c.height=i.height*k;c.getContext('2d').drawImage(i,0,0,c.width,c.height);URL.revokeObjectURL(u);ok(c.toDataURL('image/jpeg',.72))};i.onerror=()=>ok(null);i.src=u})}
+async function pick(e){const f=e.target.files[0];e.target.value='';if(!f||cur==null)return;const d=await shrink(f);if(!d)return;P[cur]=d;await tx('readwrite',s=>s.put(d,cur));render()}
+fi.onchange=pick;fa.onchange=pick;
+document.addEventListener('click',e=>{const t=e.target,d=t.dataset;if(d.day){day=d.day;render();window.scrollTo(0,0)}else if(d.a){const [k,j]=d.a.split('|');const s=S[k]=S[k]||{c:[],r:0,n:''};s.a=s.a||[];s.a[j]=!s.a[j];save();render()}else if(d.cam){cur=d.cam;fi.click()}else if(d.alb){cur=d.alb;fa.click()}else if(d.del){delete P[d.del];tx('readwrite',s=>s.delete(d.del)).then(render)}});
+pr.onclick=()=>{const o=day;day='all';render();const app=window.AndroidPrint;setTimeout(()=>{if(app){app.print();setTimeout(()=>{day=o;render()},4000)}else{window.print();setTimeout(()=>{day=o;render()},800)}},300)};
+(async()=>{try{db=await idb();await tx('readonly',s=>{const r=s.openCursor();r.onsuccess=()=>{const c=r.result;if(c){P[c.key]=c.value;c.continue()}}})}catch(e){}Object.keys(P).forEach(k=>{if(MIG[k]){P[MIG[k]]=P[k];tx('readwrite',st=>{st.put(P[k],MIG[k]);st.delete(k)});delete P[k]}});Object.keys(S).forEach(k=>{if(MIG[k]){S[MIG[k]]=S[k];delete S[k]}});save();render()})();
+render();
+</script>
+</body>
+</html>
